@@ -1,0 +1,1 @@
+For 100% reliable real thumbnails, save one still frame of each reel as a WebP file named project-01.webp, project-02.webp, ... project-06.webp. Suggested aspect ratio: 4:3 or 16:9; size 1200x900 pixels. The website automatically uses these files first, otherwise Instagram preview is attempted.
