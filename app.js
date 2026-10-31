@@ -6,7 +6,7 @@ document.documentElement.classList.add('js');
 const VIDEOS = ['u3aHSAtZgAo', 'beQJ7x53AN8', 'g1jD1QM3xI0', 'tC60OSAFGOk', 'am3RivPRmYA', 'f8CqDLjOGss'];
 const COPY = {
   en: {
-    skip:'Skip to content', navWork:'Work',navAbout:'About',navContact:'Contact',letsTalk:"LET'S TALK",
+    servicesOverline:'SERVICES FOR BRANDS & CREATORS',servicesTitle:'How I can help.',servicesIntro:'Remote video editing and motion graphics for brands, agencies and creators in the UAE, Saudi Arabia, Kuwait and across the Arab world.',serviceVideo:'Video Editing',serviceMotion:'Motion Graphics',skip:'Skip to content', navWork:'Work',navAbout:'About',navContact:'Contact',letsTalk:"LET'S TALK",
     experienceLabel:'YEARS OF CREATIVE EDITING', heroKicker:'INDEPENDENT VIDEO EDITOR & MOTION DESIGNER',introLine:"HI, I'M",
     heroDescription:'Five years of turning raw footage into compelling visual stories. Clean edits, intentional motion, and details that make people watch.',
     viewWork:'EXPLORE MY WORK',contactMe:'Get in touch <span aria-hidden="true">↗</span>',photoMeta:'CREATIVE / 2026',
@@ -23,7 +23,7 @@ const COPY = {
     project:'Project',projectAction:'Open project',dialogClose:'Close project',switchTo:'Switch to Arabic',filterLabel:'Filter projects'
   },
   ar: {
-    skip:'تجاوز إلى المحتوى',navWork:'الأعمال',navAbout:'نبذة عني',navContact:'التواصل',letsTalk:'تواصل معي',
+    servicesOverline:'خدمات للشركات وصنّاع المحتوى',servicesTitle:'كيف يمكنني مساعدتك؟',servicesIntro:'مونتاج فيديو وموشن غرافيك عن بُعد للشركات والوكالات وصنّاع المحتوى في الإمارات والسعودية والكويت وبقية الدول العربية.',serviceVideo:'مونتاج الفيديو',serviceMotion:'الموشن غرافيك',skip:'تجاوز إلى المحتوى',navWork:'الأعمال',navAbout:'نبذة عني',navContact:'التواصل',letsTalk:'تواصل معي',
     experienceLabel:'سنوات من المونتاج الإبداعي', heroKicker:'مونتير فيديو ومصمم موشن غرافيك مستقل',introLine:'مرحباً، أنا',
     heroDescription:'خمس سنوات من تحويل اللقطات الخام إلى قصص بصرية جذابة. مونتاج متقن وحركة مدروسة وتفاصيل تصنع فرقاً في كل مشهد.',
     viewWork:'اكتشف أعمالي',contactMe:'تواصل معي <span aria-hidden="true">↗</span>',photoMeta:'إبداع / 2026',
@@ -51,6 +51,8 @@ try { if(localStorage.getItem('ali-portfolio-language')==='ar') currentLanguage=
 function applyLanguage(language){
   currentLanguage=language;
   const dict=COPY[language];
+  document.querySelector('#service-video').href=`services/video-editing/${language}/`;
+  document.querySelector('#service-motion').href=`services/motion-graphics/${language}/`;
   document.documentElement.lang=language;
   document.documentElement.dir=language==='ar'?'rtl':'ltr';
   $$('[data-i18n]').forEach(el=>{

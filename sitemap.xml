@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://alimonerdiop-sketch.github.io/portfolio-/</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://alimonerdiop-sketch.github.io/portfolio-/</loc></url>
+  <url><loc>https://alimonerdiop-sketch.github.io/portfolio-/services/video-editing/en/</loc></url>
+  <url><loc>https://alimonerdiop-sketch.github.io/portfolio-/services/video-editing/ar/</loc></url>
+  <url><loc>https://alimonerdiop-sketch.github.io/portfolio-/services/motion-graphics/en/</loc></url>
+  <url><loc>https://alimonerdiop-sketch.github.io/portfolio-/services/motion-graphics/ar/</loc></url>
+</urlset>
