@@ -59,6 +59,7 @@ function applyLanguage(language){
     const phrase=dict[el.dataset.i18n];
     if(phrase!==undefined) el.innerHTML=phrase; // Only trusted constant translation strings.
   });
+  $$('[data-case]').forEach(link=>{link.href=`projects/${link.dataset.case}/${language}/`;link.textContent=language==='ar'?'تفاصيل المشروع ↗':'VIEW PROJECT DETAILS ↗';});
   const toggle=$('#lang-toggle');
   toggle.innerHTML=language==='en'?'EN <span class="lang-slash">/</span> <span class="lang-alt">AR</span>':'AR <span class="lang-slash">/</span> <span class="lang-alt">EN</span>';
   toggle.setAttribute('aria-label',dict.switchTo);

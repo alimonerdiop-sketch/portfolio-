@@ -13,3 +13,7 @@ Ready for GitHub Pages repository `alimonerdiop-sketch/portfolio-`. Upload **con
 2. In Google Search Console verify the site and submit `https://alimonerdiop-sketch.github.io/portfolio-/sitemap.xml`.
 3. Add individual project pages only after collecting verified titles, descriptions and thumbnail files (avoid invented VideoObject facts).
 4. Check page performance with PageSpeed Insights and validate rich results.
+
+
+## Project pages (new)
+12 bilingual detail pages under `projects/01/en/` through `projects/06/ar/`. Each is linked from the corresponding home page card. Pages use real YouTube Shorts links, click-to-load embeds, canonical URLs, hreflang, and truthful generic workflow descriptions. Project names, specific techniques, clients and dates have **not** been invented; descriptions should be customized after reviewing original work. `sitemap.xml` includes all 17 URLs. Upload the entire unpacked folder to the repository root, including `projects/` and `project-pages.css`. Keep the existing Google verification file in the repository (this ZIP does not contain it).
