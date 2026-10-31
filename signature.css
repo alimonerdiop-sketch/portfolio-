@@ -1,0 +1,49 @@
+/* Ali Moner Diop — Signature upgrade. Small, performant, accessible motion. */
+body.brief-open{overflow:hidden}
+html:has(.signature-brief-dialog[open]) .signature-mobile-cta{display:none!important}
+.project-visual{border-radius:20px;cursor:pointer}
+.project-visual .signature-play{position:absolute;top:50%;left:50%;z-index:7;display:grid;place-items:center;width:74px;height:74px;border-radius:50%;color:#0b0e0f;background:#c8ec8e;box-shadow:0 10px 55px rgba(0,0,0,.35);transform:translate(-50%,-50%) scale(1);transition:transform .35s cubic-bezier(.2,.65,.15,1),background .25s}
+.project-visual:hover .signature-play,.project-visual:focus-visible .signature-play{transform:translate(-50%,-50%) scale(1.13);background:#e1f8c0}
+.project-visual .signature-play:before{content:"";position:absolute;inset:-10px;border:1px solid rgba(227,245,206,.62);border-radius:50%;transition:transform .3s,opacity .3s}
+.project-visual:hover .signature-play:before{transform:scale(1.15);opacity:.25}
+.project-visual .cursor-view{display:none!important}
+.signature-work-foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}
+.signature-share{background:none;border:1px solid rgba(255,255,255,.22);color:#e8e9e0;padding:13px 17px;border-radius:999px;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.09em;transition:border-color .2s,color .2s}
+.signature-share:hover,.signature-share:focus-visible{border-color:#c8ec8e;color:#c8ec8e}
+.signature-craft{padding-block:clamp(85px,11vw,160px);border-top:1px solid rgba(255,255,255,.12)}
+.signature-craft-heading{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end;margin-bottom:44px}
+.signature-craft-heading>p{color:#aeb6af;max-width:355px;line-height:1.85;font-size:15px}
+.signature-craft .section-title{font-size:clamp(59px,7.4vw,110px)}
+.signature-craft-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.signature-craft-grid article{position:relative;background:#131819;border:1px solid rgba(255,255,255,.12);padding:25px 22px 28px;min-height:280px;border-radius:19px;overflow:hidden;transition:transform .3s,border-color .3s}
+.signature-craft-grid article:hover{transform:translateY(-5px);border-color:rgba(200,236,142,.55)}
+.craft-num{color:#aeb7ac;font-size:11px;letter-spacing:.11em}.craft-symbol{display:block;color:#c8ec8e;font-size:41px;font-weight:600;line-height:1.2;margin:34px 0 27px}
+.signature-craft-grid h3{font-size:19px;letter-spacing:-.02em;margin:0 0 10px}.signature-craft-grid p{font-size:13px;line-height:1.75;color:#a9b2ab;margin:0}
+.signature-contact-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:25px 0 12px}
+.signature-brief-cta{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:17px 22px;background:#c8ec8e;color:#111915;font-weight:800;letter-spacing:.035em;cursor:pointer;transition:background .24s,transform .24s}
+.signature-brief-cta:hover{background:#e3f9c3;transform:translateY(-3px)}
+.signature-contact-actions .preindex-whatsapp{margin:0;background:transparent;border:1px solid rgba(255,255,255,.3);color:#e9f0e4!important}
+.signature-contact-actions .preindex-whatsapp:hover{background:rgba(255,255,255,.06)}
+.signature-brief-dialog{background:#101617;color:#edf0e9;border:1px solid rgba(255,255,255,.2);width:min(92vw,720px);max-height:min(92dvh,910px);overflow:auto;border-radius:24px;padding:clamp(22px,4vw,42px);box-shadow:0 30px 140px rgba(0,0,0,.75)}
+.signature-brief-dialog::backdrop{background:rgba(0,0,0,.84);backdrop-filter:blur(10px)}
+.signature-brief-top{display:flex;align-items:start;gap:20px;justify-content:space-between}
+.signature-modal-kicker{color:#c8ec8e;font-size:10px;font-weight:700;letter-spacing:.17em}
+.signature-brief-dialog h2{font-size:clamp(36px,5.8vw,67px);letter-spacing:-.06em;line-height:1.04;margin:14px 0 12px}
+.signature-brief-dialog h2 em{font-family:Georgia,serif;font-weight:400;color:#c8ec8e}
+.signature-close{border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:50%;width:43px;height:43px;flex-shrink:0;font-size:25px;cursor:pointer}
+.signature-brief-intro{color:#b0b8b2;line-height:1.7;max-width:550px;margin:7px 0 25px}
+.signature-brief-dialog form{display:grid;gap:16px}
+.signature-brief-fields-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.signature-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.signature-field label{font-weight:700;font-size:12px;color:#dce3da}
+.signature-field select,.signature-field textarea{font:inherit;border:1px solid rgba(255,255,255,.22);background:#1b2223;color:#f3f4f0;border-radius:12px;width:100%;padding:14px;outline:none;min-height:49px}
+.signature-field textarea{resize:vertical;min-height:96px}
+.signature-field select:focus,.signature-field textarea:focus{border-color:#c8ec8e;box-shadow:0 0 0 2px rgba(200,236,142,.13)}
+.signature-brief-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.signature-send{background:#c8ec8e;color:#111915;padding:15px 19px;border-radius:999px;border:none;font-weight:800;font-size:12px;cursor:pointer}
+.signature-email-fallback{font-weight:800;font-size:11px;letter-spacing:.05em;text-decoration:underline;text-underline-offset:5px}
+.signature-privacy{font-size:11px;line-height:1.6;color:#9ba79f;margin:0}
+.signature-mobile-cta{display:none}
+@media(max-width:980px){.signature-craft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.signature-craft-grid article{min-height:225px}.signature-craft-heading{grid-template-columns:1fr}.signature-craft-heading>p{max-width:650px}}
+@media(max-width:650px){.signature-craft-grid{gap:10px}.signature-craft-grid article{min-height:220px;padding:18px 15px;border-radius:15px}.signature-craft-grid h3{font-size:15px}.signature-craft-grid p{font-size:12px}.craft-symbol{margin:20px 0 18px;font-size:32px}.signature-craft .section-title{font-size:clamp(52px,11vw,82px)}.signature-play{width:62px!important;height:62px!important}.signature-brief-dialog{width:96vw;padding:23px 19px;border-radius:19px}.signature-brief-fields-row{grid-template-columns:1fr}.signature-mobile-cta{display:flex;position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;z-index:82;align-items:center;justify-content:space-between;gap:10px;border:1px solid rgba(200,236,142,.26);border-radius:17px;padding:10px 10px 10px 16px;background:rgba(15,20,20,.96);box-shadow:0 12px 45px rgba(0,0,0,.55);opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .28s,transform .28s,visibility .28s}.signature-mobile-cta.is-ready{opacity:1;visibility:visible;transform:translateY(0)}.signature-mobile-cta>span{font-size:12px;font-weight:700}.signature-mobile-cta button{border:0;background:#c8ec8e;color:#111915;font-weight:800;font-size:11px;border-radius:12px;padding:13px 15px;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){.signature-play,.signature-craft-grid article,.signature-brief-cta,.signature-mobile-cta{transition:none!important}.signature-craft-grid article:hover{transform:none}}

@@ -1,19 +1,25 @@
-# Ali Moner Diop — Premium Motion GCC SEO
+# Ali Moner Diop — Signature Motion Edition v3
 
-Ready for GitHub Pages repository `alimonerdiop-sketch/portfolio-`. Upload **contents** of this folder to repository root, replacing same-named files while preserving `assets/`.
+A static bilingual portfolio optimized for GitHub Pages. **No build step / no paid hosting / no backend.**
 
-## Changes
-- English/Arabic content for two service pages with indexable static HTML, canonical and hreflang cross-links.
-- Prioritized copy for UAE, Saudi Arabia, Kuwait, then other Arab markets. Services explicitly remote; no invented physical office.
-- Service JSON-LD, WebPage JSON-LD, sitemap with five URLs, updated home meta description.
-- Existing portrait, six YouTube videos, motion, WhatsApp, email, and Instagram retained.
+## What's improved
+- Premium rounded YouTube cover cards + centered play icon; videos load only when clicked
+- New bilingual craft/capabilities section grounded in actual post-production tasks
+- Functional **Project Brief** modal with service, volume, desired timeline, details; drafts WhatsApp or email; no data is collected or stored by this website
+- Mobile sticky lead CTA, share portfolio link, keyboard-friendly dialog
+- Custom social preview `assets/social-preview.jpg` (1200×630) with actual portrait
+- 404 page; Google's previously verified HTML file included
+- All six original YouTube IDs, all 12 bilingual project pages, both bilingual service sections and sitemap preserved
 
-## Next steps
-1. In GitHub Settings → Pages, keep deployment from `main` `/root`.
-2. In Google Search Console verify the site and submit `https://alimonerdiop-sketch.github.io/portfolio-/sitemap.xml`.
-3. Add individual project pages only after collecting verified titles, descriptions and thumbnail files (avoid invented VideoObject facts).
-4. Check page performance with PageSpeed Insights and validate rich results.
+## Upload
+1. Download ZIP, unzip it.
+2. Open `https://github.com/alimonerdiop-sketch/portfolio-`.
+3. Upload the **contents** of the folder (including `assets/`, `projects/`, `services/`, and the HTML verification file) to the repo root, replacing same-named files. Do not upload the ZIP itself.
+4. Wait for GitHub Actions Pages success and then hard-refresh `https://alimonerdiop-sketch.github.io/portfolio-/?v=3`.
 
-
-## Project pages (new)
-12 bilingual detail pages under `projects/01/en/` through `projects/06/ar/`. Each is linked from the corresponding home page card. Pages use real YouTube Shorts links, click-to-load embeds, canonical URLs, hreflang, and truthful generic workflow descriptions. Project names, specific techniques, clients and dates have **not** been invented; descriptions should be customized after reviewing original work. `sitemap.xml` includes all 17 URLs. Upload the entire unpacked folder to the repository root, including `projects/` and `project-pages.css`. Keep the existing Google verification file in the repository (this ZIP does not contain it).
+## Quality and limitations
+- Actual YouTube video playback depends on embedding permission and connectivity.
+- Project titles remain generic because verified individual project names/descriptions were not supplied. Do not invent client names, results or specific techniques per video.
+- The quote builder uses `wa.me` or `mailto:`; it does not offer checkout, server-side submissions or storage.
+- Do not delete the Google verification file in future updates.
+- Test menu/EN–AR/video/dialog on desktop and mobile before asking Google for indexing.

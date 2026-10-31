@@ -1,0 +1,23 @@
+
+/* Pre-index conversion and content improvements */
+.preindex-section{padding-block:clamp(72px,9vw,136px);border-top:1px solid rgba(255,255,255,.10)}
+.preindex-header{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,.75fr);align-items:end;gap:32px;margin:22px 0 42px}
+.preindex-header>p{max-width:390px;line-height:1.8;color:#a5ada9}
+.preindex-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.preindex-steps article{border:1px solid rgba(255,255,255,.14);background:#141819;border-radius:22px;padding:clamp(22px,3vw,34px);min-height:225px;transition:transform .3s,border-color .3s}
+.preindex-steps article:hover{transform:translateY(-5px);border-color:#b6d69f}
+.preindex-steps article>span{display:block;color:#bed89f;font-size:14px;margin-bottom:40px}
+.preindex-steps h3{font-size:clamp(19px,2.4vw,27px);margin-bottom:10px}
+.preindex-steps p{color:#aeb4b1;line-height:1.75}
+.preindex-faq{background:#0d1112}.preindex-faq .section-title{margin:22px 0 35px}
+.preindex-faq-list{max-width:900px;margin-inline:auto}
+.preindex-faq-list details{border-bottom:1px solid rgba(255,255,255,.16);padding:22px 0}
+.preindex-faq-list summary{cursor:pointer;list-style:none;font-weight:600;font-size:clamp(17px,2vw,22px);display:flex;gap:20px;justify-content:space-between;align-items:center}
+.preindex-faq-list summary::-webkit-details-marker{display:none}
+.preindex-faq-list summary::after{content:'+';font-size:28px;color:#bad69e;font-weight:400}
+.preindex-faq-list details[open] summary::after{content:'−'}
+.preindex-faq-list details p{max-width:740px;color:#b4bab7;margin-top:12px;line-height:1.8}
+.preindex-whatsapp{display:inline-flex;margin:18px 0 12px;align-items:center;justify-content:center;background:#c4e19f;color:#131813!important;font-weight:800;text-decoration:none;padding:16px 22px;border-radius:999px;transition:transform .25s,background .25s}
+.preindex-whatsapp:hover{transform:translateY(-3px);background:#e0f1c5}
+@media(max-width:760px){.preindex-header,.preindex-steps{grid-template-columns:1fr}.preindex-steps article{min-height:unset}.preindex-steps article>span{margin-bottom:20px}}
+@media(prefers-reduced-motion:reduce){.preindex-steps article,.preindex-whatsapp{transition:none!important}}
