@@ -2,11 +2,8 @@
 'use strict';
 document.documentElement.classList.add('js');
 
-// Instagram URLs are supplied by the portfolio owner. No project content is invented.
-const POSTS = [
-  'DMGMiZfu-V2', 'DTMIxfrDo3G', 'DQy3zR7Dg4J',
-  'DcX5xuqOPgQ', 'DacvmKjOLpH', 'DU0q5Rxjvs7'
-];
+// Videos provided by the portfolio owner; thumbnails are loaded from YouTube.
+const VIDEOS = ['u3aHSAtZgAo', 'beQJ7x53AN8', 'g1jD1QM3xI0', 'tC60OSAFGOk', 'am3RivPRmYA', 'f8CqDLjOGss'];
 const COPY = {
   en: {
     skip:'Skip to content', navWork:'Work',navAbout:'About',navContact:'Contact',letsTalk:"LET'S TALK",
@@ -16,13 +13,13 @@ const COPY = {
     basedOn:'AVAILABLE FOR REMOTE PROJECTS',scrollDown:'SCROLL TO EXPLORE', selectedLabel:'THE COLLECTION',selectedFirst:'Selected',selectedSecond:'work.',
     workIntro:'A selection of my edits and motion projects. Every frame shaped with purpose.',projectsCount:'PROJECTS',
     allWork:'ALL WORK <sup>06</sup>',groupOne:'01 — 03',groupTwo:'04 — 06',clickToWatch:'SELECT A PROJECT TO VIEW ↗',
-    projectType:'INSTAGRAM PROJECT',workFineprint:'Video previews load from Instagram where available. Select any project to view the original.',
+    projectType:'YOUTUBE SHORT',workFineprint:'Click any thumbnail to play the video here, without leaving this website.',
     aboutLabel:'ABOUT THE CREATIVE',aboutHeading:'Good editing<br/>is <em>felt.</em>',
     aboutText:"I'm Ali Moner Diop, a video editor and motion graphics designer with five years of experience. I craft social content, promotional videos and engaging motion using Adobe Premiere Pro, After Effects, Photoshop and Illustrator.",
     myTools:'MY DAILY TOOLKIT',contactLabel:"LET'S CONNECT",contactHeading:'Have a project<br/><em>in mind?</em>',
     contactDescription:"Let's turn your next idea into something worth watching. I'm one message away.",emailLabel:'EMAIL',
     footerQuote:'CRAFTED FRAME BY FRAME.',backToTop:'BACK TO TOP ↑',dialogKicker:'SELECTED WORK',
-    dialogHint:"If Instagram doesn't load the video here, open it directly.",openInstagram:'OPEN ON INSTAGRAM ↗',
+    dialogHint:"If the video cannot play here, open it on YouTube.",openInstagram:'WATCH ON YOUTUBE ↗',
     project:'Project',projectAction:'Open project',dialogClose:'Close project',switchTo:'Switch to Arabic',filterLabel:'Filter projects'
   },
   ar: {
@@ -33,13 +30,13 @@ const COPY = {
     basedOn:'متاح للعمل على المشاريع عن بُعد',scrollDown:'مرر لاكتشاف المزيد',selectedLabel:'مجموعة الأعمال',selectedFirst:'مختارات من',selectedSecond:'أعمالي.',
     workIntro:'مجموعة مختارة من أعمال المونتاج والموشن غرافيك، صُمّم كل إطار فيها بعناية.',projectsCount:'أعمال',
     allWork:'جميع الأعمال <sup>06</sup>',groupOne:'01 — 03',groupTwo:'04 — 06',clickToWatch:'اختر عملاً للمشاهدة ↗',
-    projectType:'عمل منشور على إنستغرام',workFineprint:'تُحمَّل معاينات الأعمال من إنستغرام عند توفرها. اضغط على أي عمل لمشاهدة الأصل.',
+    projectType:'فيديو من أعمالي',workFineprint:'اضغط على أي صورة مصغّرة لتشغيل الفيديو داخل الموقع.',
     aboutLabel:'نبذة عني',aboutHeading:'المونتاج الجيد<br/><em>يُشعَر به.</em>',
     aboutText:'أنا علي منير ديوب، مونتير فيديو ومصمم موشن غرافيك بخبرة خمس سنوات. أعمل على محتوى التواصل الاجتماعي والفيديوهات الترويجية والموشن غرافيك باستخدام Adobe Premiere Pro وAfter Effects وPhotoshop وIllustrator.',
     myTools:'البرامج التي أستخدمها',contactLabel:'لنتواصل',contactHeading:'هل لديك مشروع<br/><em>في ذهنك؟</em>',
     contactDescription:'لنحوّل فكرتك القادمة إلى محتوى يستحق المشاهدة. يمكنك التواصل معي مباشرة.',emailLabel:'البريد الإلكتروني',
     footerQuote:'صُنع بعناية، إطاراً بعد إطار.',backToTop:'العودة إلى الأعلى ↑',dialogKicker:'عمل مختار',
-    dialogHint:'إذا لم يظهر الفيديو هنا بسبب قيود إنستغرام، افتحه مباشرة من الرابط.',openInstagram:'مشاهدة على إنستغرام ↗',
+    dialogHint:'إذا تعذّر تشغيل الفيديو هنا، يمكنك فتحه في يوتيوب.',openInstagram:'مشاهدة على يوتيوب ↗',
     project:'العمل',projectAction:'فتح العمل',dialogClose:'إغلاق المشروع',switchTo:'Switch to English',filterLabel:'تصفية الأعمال'
   }
 };
@@ -105,70 +102,44 @@ $$('.filter').forEach(button=>button.addEventListener('click',()=>{
 }));
 
 
-// Project thumbnail strategy:
-// 1. Prefer a real, owner-provided still at assets/thumbs/project-01.webp ... project-06.webp.
-// 2. Try Instagram's public media URL (not guaranteed; policies differ by post/browser).
-// 3. Otherwise display the source Instagram embed cropped inside the project card.
-//    A fallback label and direct Instagram link remain if previews are blocked.
-// No AI/generated/synthetic stills are used as project thumbnails.
-function loadProjectPreview(stage) {
-  if (stage.dataset.started) return;
-  stage.dataset.started = '1';
-  const i = Number(stage.dataset.preview);
-  const shortcode = POSTS[i];
-  if (!shortcode) return;
-  const localPath = `assets/thumbs/project-${String(i+1).padStart(2,'0')}.webp`;
-  const publicMediaURL = `https://www.instagram.com/p/${encodeURIComponent(shortcode)}/media/?size=l`;
-  const attemptImage = (url,success,failed) => {
-    const img = new Image();
-    img.className='preview-image';
-    img.alt='';
-    img.decoding='async';
-    img.onload=()=>{
-      // Tiny tracking pixels / invalid results should not count as a thumbnail.
-      if(img.naturalWidth<120||img.naturalHeight<120){failed();return;}
-      stage.append(img);
-      stage.classList.add('has-image');
-      success();
-    };
-    img.onerror=failed;
-    img.src=url;
-  };
-  const useEmbed=()=>{
-    const frame=document.createElement('iframe');
-    frame.className='preview-embed';
-    frame.title=`Instagram preview ${i+1}`;
-    frame.loading='lazy';
-    frame.tabIndex=-1;
-    frame.setAttribute('aria-hidden','true');
-    frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
-    frame.src=`https://www.instagram.com/p/${encodeURIComponent(shortcode)}/embed/`;
-    frame.addEventListener('load',()=>stage.classList.add('has-embed'),{once:true});
-    stage.append(frame);
-    stage.classList.add('embed-attempted');
-  };
-  attemptImage(localPath,()=>{},()=>attemptImage(publicMediaURL,()=>{},useEmbed));
-}
+// Each card uses the actual public YouTube thumbnail for the owner's video.
+// Display a clean local fallback when YouTube has no available thumbnail.
 const previewStages=$$('.project-preview');
-if('IntersectionObserver' in window){
-  const previewObserver=new IntersectionObserver((entries,observer)=>{
-    entries.forEach(entry=>{if(entry.isIntersecting){loadProjectPreview(entry.target);observer.unobserve(entry.target);}});
-  },{rootMargin:'500px 0px'});
-  previewStages.forEach(el=>previewObserver.observe(el));
-}else previewStages.forEach(loadProjectPreview);
+previewStages.forEach(stage=>{
+  const index=Number(stage.dataset.preview);
+  const id=VIDEOS[index];
+  if(!id)return;
+  const image=new Image();
+  image.className='preview-image';
+  image.alt='';
+  image.loading='lazy';
+  image.decoding='async';
+  image.onload=()=>{
+    // The default YouTube placeholder is 120px wide.
+    if(image.naturalWidth<=120) {
+      image.src=`https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+      return;
+    }
+    stage.classList.add('has-image');
+  };
+  image.onerror=()=>{
+    if(!image.src.includes('hqdefault')) image.src=`https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  };
+  image.src=`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+  stage.appendChild(image);
+});
 
-// Instagram embeds can be blocked by third-party privacy policies: always include direct link.
 const projectDialog=$('#project-dialog');
 const projectFrame=$('#project-iframe');
 function showProject(index){
-  if(!Number.isInteger(index)||!POSTS[index]) return;
-  const url=`https://www.instagram.com/p/${POSTS[index]}/`;
-  const embedUrl=`https://www.instagram.com/p/${POSTS[index]}/embed/`;
+  if(!Number.isInteger(index)||!VIDEOS[index])return;
+  const id=VIDEOS[index];
+  const url=`https://www.youtube.com/shorts/${id}`;
   projectDialog.dataset.project=String(index);
   $('#dialog-title').textContent=`${COPY[currentLanguage].project} ${String(index+1).padStart(2,'0')}`;
   $('#dialog-external').href=url;
-  projectFrame.title=`Instagram ${COPY[currentLanguage].project.toLowerCase()} ${index+1}`;
-  projectFrame.src=embedUrl;
+  projectFrame.title=`YouTube ${COPY[currentLanguage].project} ${index+1}`;
+  projectFrame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
   document.body.classList.add('modal-open');
   if(typeof projectDialog.showModal==='function') projectDialog.showModal();
   else window.open(url,'_blank','noopener,noreferrer');
