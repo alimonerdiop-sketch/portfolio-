@@ -71,3 +71,21 @@ html:not(.js) .hero-title-line .title-inner{transform:none}html:not(.js) .hero-m
 .dialog-video{display:flex;justify-content:center;align-items:center;background:#070909}
 .dialog-video iframe{width:min(100%,380px)!important;aspect-ratio:9 / 16;height:min(76dvh,680px)!important;min-height:0!important;border:0}
 @media(max-width:650px){.project-visual::before{width:68px;height:68px}.dialog-video iframe{height:min(69dvh,660px)!important;width:min(100%,365px)!important}}
+
+/* Premium Motion edition: restrained, accessible, GPU-friendly transitions */
+:root{--ease-premium:cubic-bezier(.22,1,.36,1)}
+.hero-expertise{display:flex;align-items:center;gap:16px;margin-top:32px;padding-top:22px;border-top:1px solid rgba(235,242,229,.16);font-size:10px;letter-spacing:.13em;font-weight:750;color:#aeb9ab}
+.hero-years{font-size:35px;font-weight:800;letter-spacing:-.08em;line-height:1;color:#eff0eb}.hero-years span{color:var(--accent);font-size:19px;vertical-align:top}
+.project-card{transition:filter .35s var(--ease-premium)}
+.project-card:hover{filter:brightness(1.08)}
+.project-visual{isolation:isolate;transition:transform .65s var(--ease-premium),box-shadow .5s var(--ease-premium)}
+@media (hover:hover) and (pointer:fine){.project-visual:hover{box-shadow:0 24px 70px rgba(0,0,0,.35)}}
+.project-visual::before{box-shadow:0 9px 34px rgba(0,0,0,.22);transition:transform .4s var(--ease-premium),background .3s}
+.project-visual:focus-visible::before{background:var(--accent);border-color:var(--accent)}
+.project-visual:focus-visible::after{border-left-color:#102010}
+.project-meta h3{transition:color .3s}.project-card:hover .project-meta h3{color:var(--accent)}
+.tool-list span{transition:border-color .3s,transform .3s var(--ease-premium),background .3s}.tool-list span:hover{transform:translateY(-4px);border-color:rgba(200,236,142,.65);background:rgba(200,236,142,.06)}
+.floating-top{position:fixed;z-index:69;bottom:26px;right:26px;width:46px;height:46px;border:1px solid rgba(240,240,232,.2);border-radius:50%;display:grid;place-items:center;background:rgba(20,25,25,.88);backdrop-filter:blur(14px);font-size:23px;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s,background .3s}.floating-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}.floating-top:hover{background:var(--accent);color:#0b0e0f}
+[dir=rtl] .floating-top{left:26px;right:auto}
+@media(max-width:650px){.hero-expertise{margin-top:24px}.floating-top{right:14px;bottom:14px;width:42px;height:42px}[dir=rtl] .floating-top{left:14px;right:auto}}
+@media(prefers-reduced-motion:reduce){.hero-expertise,.project-card,.project-visual,.tool-list span,.floating-top{transition:none!important}.marquee-track{animation:none!important}}

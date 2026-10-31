@@ -7,7 +7,7 @@ const VIDEOS = ['u3aHSAtZgAo', 'beQJ7x53AN8', 'g1jD1QM3xI0', 'tC60OSAFGOk', 'am3
 const COPY = {
   en: {
     skip:'Skip to content', navWork:'Work',navAbout:'About',navContact:'Contact',letsTalk:"LET'S TALK",
-    heroKicker:'INDEPENDENT VIDEO EDITOR & MOTION DESIGNER',introLine:"HI, I'M",
+    experienceLabel:'YEARS OF CREATIVE EDITING', heroKicker:'INDEPENDENT VIDEO EDITOR & MOTION DESIGNER',introLine:"HI, I'M",
     heroDescription:'Five years of turning raw footage into compelling visual stories. Clean edits, intentional motion, and details that make people watch.',
     viewWork:'EXPLORE MY WORK',contactMe:'Get in touch <span aria-hidden="true">↗</span>',photoMeta:'CREATIVE / 2026',
     basedOn:'AVAILABLE FOR REMOTE PROJECTS',scrollDown:'SCROLL TO EXPLORE', selectedLabel:'THE COLLECTION',selectedFirst:'Selected',selectedSecond:'work.',
@@ -24,7 +24,7 @@ const COPY = {
   },
   ar: {
     skip:'تجاوز إلى المحتوى',navWork:'الأعمال',navAbout:'نبذة عني',navContact:'التواصل',letsTalk:'تواصل معي',
-    heroKicker:'مونتير فيديو ومصمم موشن غرافيك مستقل',introLine:'مرحباً، أنا',
+    experienceLabel:'سنوات من المونتاج الإبداعي', heroKicker:'مونتير فيديو ومصمم موشن غرافيك مستقل',introLine:'مرحباً، أنا',
     heroDescription:'خمس سنوات من تحويل اللقطات الخام إلى قصص بصرية جذابة. مونتاج متقن وحركة مدروسة وتفاصيل تصنع فرقاً في كل مشهد.',
     viewWork:'اكتشف أعمالي',contactMe:'تواصل معي <span aria-hidden="true">↗</span>',photoMeta:'إبداع / 2026',
     basedOn:'متاح للعمل على المشاريع عن بُعد',scrollDown:'مرر لاكتشاف المزيد',selectedLabel:'مجموعة الأعمال',selectedFirst:'مختارات من',selectedSecond:'أعمالي.',
@@ -139,10 +139,11 @@ function showProject(index){
   $('#dialog-title').textContent=`${COPY[currentLanguage].project} ${String(index+1).padStart(2,'0')}`;
   $('#dialog-external').href=url;
   projectFrame.title=`YouTube ${COPY[currentLanguage].project} ${index+1}`;
-  projectFrame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
   document.body.classList.add('modal-open');
-  if(typeof projectDialog.showModal==='function') projectDialog.showModal();
-  else window.open(url,'_blank','noopener,noreferrer');
+  if(typeof projectDialog.showModal==='function'){
+    projectDialog.showModal();
+    projectFrame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+  } else { document.body.classList.remove('modal-open'); window.open(url,'_blank','noopener,noreferrer'); }
 }
 $$('[data-project]').forEach(button=>button.addEventListener('click',()=>showProject(Number(button.dataset.project))));
 $('#close-dialog').addEventListener('click',()=>projectDialog.close());
@@ -199,6 +200,7 @@ if(hoverMotion){
 let scrollQueued=false;
 function updateProgress(){
   const total=document.documentElement.scrollHeight-window.innerHeight;
+  $('#floating-top').classList.toggle('is-visible', window.scrollY > 650);
   $('#scroll-progress').style.width=`${total>0?Math.min(100,Math.max(0,window.scrollY/total*100)):0}%`;
   scrollQueued=false;
 }
