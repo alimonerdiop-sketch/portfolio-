@@ -4,6 +4,9 @@ document.documentElement.classList.add('js');
 
 // Videos provided by the portfolio owner; thumbnails are loaded from YouTube.
 const VIDEOS = ['u3aHSAtZgAo', 'beQJ7x53AN8', 'g1jD1QM3xI0', 'tC60OSAFGOk', 'am3RivPRmYA', 'f8CqDLjOGss'];
+// Curated portfolio display titles: broad skill themes, not verified YouTube upload titles.
+const PROJECT_TITLES = {"en": ["Social Reels Editing", "Short-Form Storytelling", "Motion & Typography", "Creative Post-Production", "Dynamic Video Editing", "Visual & Audio Finishing"], "ar": ["مونتاج ريلز السوشال ميديا", "السرد البصري القصير", "الموشن وتحريك النصوص", "المعالجة الإبداعية للفيديو", "مونتاج بإيقاع ديناميكي", "اللمسات البصرية والصوتية"]};
+
 const COPY = {
   en: {
     navServices:'Services', sharePortfolio:'SHARE PORTFOLIO ↗',craftEyebrow:'THE DETAILS MATTER',craftTitle:'The craft<br><em>behind the cut.</em>',craftIntro:'From cleaning raw footage to polishing every transition, each edit is shaped for clarity, pace and impact.',craftOne:'Precision Editing',craftOneText:'Removing pauses and mistakes, then building a clear, engaging rhythm.',craftTwo:'Animated Typography',craftTwoText:'Purposeful captions and kinetic text that guide the viewer.',craftThree:'Motion & Visuals',craftThreeText:'Clean animations, icons and visual accents that support the story.',craftFour:'Finishing Touches',craftFourText:'Color refinement, sound effects and music for a cohesive finish.',startBrief:'START A PROJECT BRIEF ↗',stickyLabel:'Have a project in mind?',stickyAction:"LET'S TALK ↗",briefEyebrow:'PROJECT INQUIRY / 01',briefTitle:"Let's create<br><em>something great.</em>",briefIntro:"Tell me a little about your project. I'll prepare the message and open WhatsApp so you can send it yourself.",briefServiceLabel:'What do you need?',briefOptionReels:'Reels / Shorts Editing',briefOptionPromo:'Promotional Video',briefOptionMotion:'Motion Graphics',briefOptionOther:'Other Video Project',briefVolumeLabel:'Number of videos',briefDeadlineLabel:'Preferred timeline',briefTimelineFlexible:'Flexible',briefTimelineWeek:'This week',briefTimelineTwo:'Within two weeks',briefTimelineMonth:'This month',briefDetailsLabel:'Tell me about the footage or the idea',briefDetailsPlaceholder:'Format, duration, style, reference links...',briefSend:'CONTINUE TO WHATSAPP ↗',briefEmail:'OR SEND BY EMAIL',briefPrivacy:'This form does not send or store your information. You choose when to send the message via WhatsApp or email.',briefClose:'Close project inquiry',shareDone:'Portfolio link copied!',
@@ -109,12 +112,12 @@ function applyLanguage(language){
   toggle.setAttribute('aria-label',dict.switchTo);
   $('.work-filters').setAttribute('aria-label',dict.filterLabel);
   $('#close-dialog').setAttribute('aria-label',dict.dialogClose);
-  $$('[data-project-title]').forEach((el,i)=>el.textContent=`${dict.project} ${String(i+1).padStart(2,'0')}`);
-  $$('[data-project]').forEach((el,i)=>el.setAttribute('aria-label',`${dict.projectAction} ${String(i+1).padStart(2,'0')}`));
+  $$('[data-project-title]').forEach((el,i)=>el.textContent=PROJECT_TITLES[language][i]);
+  $$('[data-project]').forEach((el,i)=>el.setAttribute('aria-label',`${dict.projectAction}: ${PROJECT_TITLES[language][i]}`));
   const dialog=$('#project-dialog');
   if(dialog.open){
     const index=Number(dialog.dataset.project||0);
-    $('#dialog-title').textContent=`${dict.project} ${String(index+1).padStart(2,'0')}`;
+    $('#dialog-title').textContent=PROJECT_TITLES[language][index];
   }
   try { localStorage.setItem('ali-portfolio-language',language); } catch (_) { /* non-fatal */ }
 }
@@ -184,9 +187,9 @@ function showProject(index){
   const id=VIDEOS[index];
   const url=`https://www.youtube.com/shorts/${id}`;
   projectDialog.dataset.project=String(index);
-  $('#dialog-title').textContent=`${COPY[currentLanguage].project} ${String(index+1).padStart(2,'0')}`;
+  $('#dialog-title').textContent=PROJECT_TITLES[currentLanguage][index];
   $('#dialog-external').href=url;
-  projectFrame.title=`YouTube ${COPY[currentLanguage].project} ${index+1}`;
+  projectFrame.title=`YouTube — ${PROJECT_TITLES[currentLanguage][index]}`;
   document.body.classList.add('modal-open');
   if(typeof projectDialog.showModal==='function'){
     projectDialog.showModal();

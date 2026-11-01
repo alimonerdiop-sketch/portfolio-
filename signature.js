@@ -7,6 +7,7 @@
   const briefDialog = $('#signature-brief-dialog');
   const briefForm = $('#signature-brief-form');
   const emailLink = $('#signature-brief-email');
+  const whatsappLink = $('#signature-brief-whatsapp');
   const mobileCta = $('#signature-mobile-cta');
   const isArabic = () => document.documentElement.lang === 'ar';
   const text = (en,ar) => isArabic() ? ar : en;
@@ -22,7 +23,7 @@
     } else { location.href = '#contact'; }
   }
   $$('[data-open-brief]').forEach(btn => btn.addEventListener('click', openBrief));
-  closeBrief.addEventListener('click', () => briefDialog.close());
+  closeBrief?.addEventListener('click', () => briefDialog.close());
   briefDialog.addEventListener('click', evt => {
     if (evt.target === briefDialog) briefDialog.close();
   });
@@ -54,21 +55,17 @@
       ? `مرحباً علي، شاهدت موقع أعمالك وأود الاستفسار عن مشروع.\nالخدمة: ${service}\nعدد الفيديوهات: ${volume}\nالمدة المطلوبة: ${when}${details?'\nالتفاصيل: '+details:''}\nهل يمكننا مناقشة التفاصيل؟`
       : `Hello Ali, I saw your portfolio and would like to discuss a project.\nService: ${service}\nNumber of videos: ${volume}\nPreferred timeline: ${when}${details?'\nDetails: '+details:''}\nCan we discuss the scope?`;
   }
-  function updateEmail(){
+  function updateLinks(){
+    whatsappLink.href = `https://wa.me/963934704123?text=${encodeURIComponent(message())}`;
     const subject = text('Video editing project inquiry','استفسار عن مشروع مونتاج');
     emailLink.href = `mailto:alimonerdiop@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message())}`;
   }
-  briefForm.addEventListener('input', updateEmail);
-  briefForm.addEventListener('change', updateEmail);
-  const languageObserver=new MutationObserver(updateEmail);
+  briefForm.addEventListener('input', updateLinks);
+  briefForm.addEventListener('change', updateLinks);
+  const languageObserver=new MutationObserver(updateLinks);
   languageObserver.observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-  updateEmail();
-  briefForm.addEventListener('submit', evt => {
-    evt.preventDefault();
-    if(!briefForm.reportValidity()) return;
-    // Must be synchronous to preserve popup permissions. No form data is sent to this site.
-    window.open(`https://wa.me/963934704123?text=${encodeURIComponent(message())}`,'_blank','noopener,noreferrer');
-  });
+  updateLinks();
+  briefForm.addEventListener('submit', event => { event.preventDefault(); whatsappLink.click(); });
   if(copyLinkButton){
     copyLinkButton.addEventListener('click', async () => {
       try {
